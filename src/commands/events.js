@@ -20,13 +20,13 @@ const eventAddCommand = (name, date, link, message) => {
     console.log(newEvent);
     newEvent.save();
   });
-  message.channel.send(`Added ${name} event to the Database.`);
+  message.channel.send(`Added ${name} event to the Database. 👌`);
 };
 
 const eventHelpCommand = recievedMessage => {
   recievedMessage.channel.send(
     `Event Commands:
-    !event add eventName eventURL - Adds an event to the database.
+    !event add eventName MM/DD/YYYY eventURL - Adds an event to the database.
     !event showAll - Shows all events that are in the database.`
   );
 };
@@ -44,14 +44,13 @@ async function eventShowAllCommand(recievedMessage) {
       console.log(events);
       for (let event of events) {
         let todayDate = new Date();
+
         if (event.date.getTime() > todayDate.getTime()) {
           recievedMessage.channel.send(`
           Event Title: ${event.title}
           Event Date: ${event.date}
           Event URL: ${event.url}`);
         } else {
-          // let id = event._id;
-          // console.log(id);
           NewEvent.findOneAndDelete(event, (error, data) => {
             if (error) {
               console.log("Deletion Error");

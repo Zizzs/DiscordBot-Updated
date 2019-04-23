@@ -89,12 +89,26 @@ function processCommand(receivedMessage) {
     arguments[0] === "add" &&
     receivedMessage.channel.id === "568089592217993227"
   ) {
-    eventCommands.eventAddCommand(
-      arguments[1],
-      arguments[2],
-      arguments[3],
-      receivedMessage
-    );
+    if (
+      typeof arguments[1] === "undefined" ||
+      typeof arguments[2] === "undefined" ||
+      typeof arguments[3] === "undefined"
+    ) {
+      receivedMessage.channel
+        .send(`Invalid input, please retype using this format:
+      Example: !event add EventName MM/DD/YYYY EventURL`);
+    } else if (arguments[2].length != 10) {
+      receivedMessage.channel.send(
+        `Invalid date, please use MM/DD/YYYY format.`
+      );
+    } else {
+      eventCommands.eventAddCommand(
+        arguments[1],
+        arguments[2],
+        arguments[3],
+        receivedMessage
+      );
+    }
   } else if (
     primaryCommand === "event" &&
     arguments[0] === "showAll" &&

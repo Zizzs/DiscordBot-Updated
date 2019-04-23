@@ -1,5 +1,5 @@
-const botToken = "XXXX";
-const url = "XXXX";
+const botToken = "XXXXX";
+const url = "XXXXX";
 const dbName = "DiscordBot";
 
 module.exports.botToken = botToken;
